@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #ffe4e1;
+            font-family: 'Arial', sans-serif;
+        }
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+        .heart {
+            color: red;
+            font-size: 5rem;
+            animation: beat 1s infinite;
+        }
+        @keyframes beat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        h1 {
+            color: #ff6f61;
+            margin: 10px 0;
+        }
+        p {
+            color: #333;
+            font-size: 1.2rem;
+        }
+        button {
+            margin-top: 20px;
+            background: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #e65b55;
+        }
+        #yes-button {
+            font-size: 1rem;
+        }
+        .thank-you {
+            background: #fddde6;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .thank-you img {
+            max-width: 60%;
+            height: auto;
+            margin-bottom: 20px;
+            position: relative;
+            animation: slide-up-img 2s ease-out forwards;
+        }
+        .thank-you h1, .thank-you p {
+            position: relative;
+            animation: slide-up-text 2s ease-out forwards, fade-in 2s ease-out forwards;
+        }
+        @keyframes slide-up-img {
+            0% {
+                transform: translateY(100%) scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-10%) scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes slide-up-text {
+            0% {
+                transform: translateY(50px) scale(0.9);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .fireworks, .hearts {
+            position: absolute;
+            animation: float 2s infinite;
+            font-size: 2rem;
+        }
+        .fireworks {
+            color: gold;
+            top: -10px;
+            left: 20%;
+        }
+        .hearts {
+            color: red;
+            top: -10px;
+            right: 20%;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+        }
+        .crying-bear {
+            background: #ffe4e1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .crying-bear img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .crying-bear h1 {
+            font-size: 2rem;
+            color: #ff6f61;
+            margin-bottom: 10px;
+        }
+        .crying-bear p {
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="heart">❤</div>
+        <h1>Will you be my Valentine?</h1>
+        <div>
+            <button id="yes-button">Yes</button>
+            <button id="no-button">No</button>
+        </div>
+    </div>
+    <script>
+        const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+        let clickCount = 0;
+
+        yesButton.addEventListener('click', () => {
+            clickCount++;
+            let size = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (size + 5 * clickCount) + 'px';
+            if (clickCount === 3) {
+                document.body.innerHTML = `
+                    <div class="thank-you">
+                        <img src="thank_you_for_being_with_me.png" alt="Thank You">
+                        <div class="fireworks">✨✨✨</div>
+                        <div class="hearts">❤❤❤</div>
+                        <h1>Happy Valentine's Day</h1>
+                        <p>I look forward to every moment with you.</p>
+                    </div>
+                `;
+            }
+        });
+
+        noButton.addEventListener('click', () => {
+            document.body.innerHTML = `
+                <div class="crying-bear">
+                    <img src="Crying_Bear.jpg" alt="Crying Bear">
+                    <h1>I'm so sad 😢</h1>
+                    <p>You broke my heart...</p>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
